@@ -34,7 +34,7 @@ closure_deps_file = os.path.join(closure_dir,'closure/goog/deps.js')
 box2d_dir = os.path.join(basedir,'box2d')
 
 extdir = join(basedir,'bin/external')
-compiler_path = os.path.join(extdir,'compiler-20130411.jar')
+compiler_path = os.path.join(extdir,'compiler-20160911.jar')
 soy_path = os.path.join(extdir,'SoyToJsSrcCompiler.jar')
 projects_path = join(basedir,'bin/projects')
 
@@ -117,21 +117,21 @@ def checkDependencies():
     if not os.path.exists(compiler_path):
         zip_path = os.path.join(extdir,'compiler.zip')
         print ('Downloading Closure Compiler: ')
-        urlretrieve("http://closure-compiler.googlecode.com/files/compiler-20130411.zip",zip_path,rephook)
+        urlretrieve("http://dl.google.com/closure-compiler/compiler-20160911.zip",zip_path,rephook)
         print ('\nUnzipping...')
         zippedFile = zipfile.ZipFile(zip_path)
-        zippedFile.extract('compiler.jar',extdir)
+        zippedFile.extract('closure-compiler-v20160911.jar',extdir)
         zippedFile.close()
         print ('Cleanup')
         os.unlink(zip_path)
-        os.rename(os.path.join(extdir,'compiler.jar'), compiler_path)
+        os.rename(os.path.join(extdir,'closure-compiler-v20160911.jar'), compiler_path)
     
     
     #Closure Templates
     if not os.path.exists(soy_path):
         zip_path = os.path.join(extdir,'soy.zip')
         print ('Downloading Closure Templates(Soy):')
-        urlretrieve("http://closure-templates.googlecode.com/files/closure-templates-for-javascript-latest.zip",
+        urlretrieve("http://dl.google.com/closure-templates/closure-templates-for-javascript-latest.zip",
             zip_path,rephook)
         print ('\nUnzipping...')
         zippedFile = zipfile.ZipFile(zip_path)
